@@ -22,7 +22,7 @@ func (r *Ring) search(key string) int {
     // YOUR CODE GOES HERE //
     /////////////////////////
 
-    return 0
+    return int(hashId(key))
 }
 
 // NewRing will create a new Ring object and return a pointer to it.

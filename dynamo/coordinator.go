@@ -186,13 +186,15 @@ func (server *Server) Voting(key string, quorum int) (string, error) {
 
 // aggregateVotes will select the right value from the votes received.
 func aggregateVotes(votes []*vote) (result string) {
+	var newest int64 = 0
+	result = ""
 	for _, vote := range votes {
-		log.Printf("[COORDINATOR] Vote: %v\n", vote.value)
+		log.Printf("[COORDINATOR] Vote: %v, Timestamp: %v\n", vote.value, vote.timestamp)
+		if vote.timestamp > newest{
+			newest = vote.timestamp
+			result = vote.value
+		}
 	}
 
-	/////////////////////////
-	// YOUR CODE GOES HERE //
-	/////////////////////////
-	result = votes[0].value
 	return
 }
